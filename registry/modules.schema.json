@@ -37,6 +37,12 @@
             "format": "uri",
             "description": "Discord bot invite, website, or public repo. https only - spam links are rejected."
           },
+          "source": {
+            "type": "string",
+            "pattern": "^https://",
+            "format": "uri",
+            "description": "Where the module's code lives (public repo). Optional in the schema but strongly recommended for bots/tools - the operator reviews it before merging."
+          },
           "author": {
             "type": "string",
             "minLength": 1,

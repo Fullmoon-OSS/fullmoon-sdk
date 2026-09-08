@@ -1,0 +1,6 @@
+# Catalog data is operator-reviewed: community PRs that touch the module
+# registry always need the operator as reviewer.
+*                                   @RedHatOnTop
+/registry/modules.json              @RedHatOnTop
+/registry/modules.schema.json       @RedHatOnTop
+/scripts/validate-registry.mjs      @RedHatOnTop

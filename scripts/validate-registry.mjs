@@ -70,6 +70,14 @@ for (const [i, e] of data.modules.entries()) {
   if (typeof e?.addedAt !== 'string' || !DATE_RE.test(e.addedAt) || !isCalendarDate(e.addedAt)) {
     fail(`${at}: addedAt must be a real calendar date (YYYY-MM-DD)`);
   }
+  // Optional provenance: where the module's code lives. Not required by the
+  // schema for tools/dashboards, but the operator reviews it before inviting
+  // or hosting anything, so https-only when present.
+  if (e?.source !== undefined) {
+    if (typeof e.source !== 'string' || !e.source.startsWith('https://')) {
+      fail(`${at}: source must be an https URL when present`);
+    }
+  }
   // Strict only on pull_request: registration PRs must carry verified ===
   // false; the operator's post-review flip (true, on main) must not fail CI.
   if (e?.verified !== false && process.env.GITHUB_EVENT_NAME === 'pull_request') {

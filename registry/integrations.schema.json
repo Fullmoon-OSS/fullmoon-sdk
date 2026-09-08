@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Fullmoon-OSS/fullmoon-sdk/blob/main/registry/integrations.schema.json",
+  "title": "Fullmoon integration registry",
+  "description": "Catalog data rendered by market.fullmoon.ink. Registration PRs must satisfy this schema; scripts/validate-registry.mjs (CI) enforces the same rules. verified must be false in registration PRs - only the operator flips it to true after review.",
+  "type": "object",
+  "required": ["version", "integrations"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "const": 1 },
+    "integrations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "type", "description", "url", "author", "addedAt", "verified"],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "description": "Display name shown in the catalog."
+          },
+          "type": {
+            "enum": ["bot", "dashboard", "tool", "client"],
+            "description": "bot=Discord bot, dashboard=web dashboard, tool=other tool, client=Minecraft client/launcher."
+          },
+          "description": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 120,
+            "description": "One-line intro - what it shows. Public copy: friendly haeyo-che."
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https://",
+            "format": "uri",
+            "description": "Discord bot invite, website, or public repo. https only - spam links are rejected."
+          },
+          "author": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "description": "Maker handle."
+          },
+          "addedAt": {
+            "type": "string",
+            "format": "date",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "description": "Registration date, YYYY-MM-DD, must be a real calendar day."
+          },
+          "verified": {
+            "const": false,
+            "description": "Always false in a registration PR. The operator sets true after checking real traffic and rule compliance."
+          }
+        }
+      }
+    }
+  }
+}

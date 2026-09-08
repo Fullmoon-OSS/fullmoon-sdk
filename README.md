@@ -113,7 +113,9 @@ const wal = await eco.getWalletByMc('SteveMan');   // 런처/클라이언트용 
 | `examples/dashboard-poller.js` | 경제 대시보드 데이터 수집 예제예요 (키 하나로 전부) |
 | `test/client.test.js` | 클라이언트 계약 테스트예요 (스텁 서버 기반, 무DB) |
 | `registry/integrations.json` | 통합 카탈로그 데이터예요 — 마켓 사이트가 이걸 읽어요 |
+| `registry/integrations.schema.json` | 카탈로그 항목의 JSON Schema예요 — 도구·LLM이 등록 PR 전 검증에 써요 |
 | `INTEGRATIONS.md` | 통합 등록 절차·카탈로그예요 |
+| `AGENTS.md` | 에이전트(LLM) 기여자용 불변식 요약이에요 |
 
 ## FAQ
 

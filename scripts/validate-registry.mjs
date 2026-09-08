@@ -2,9 +2,14 @@
 // CI runs this, so a malformed registry entry fails the PR before review.
 //
 // Rules: version === 1; integrations is an array; each entry has a name,
-// a known type, a real description, an https URL, an author, an ISO date,
-// and verified === false on the way in (flipping verified to true is an
-// operator edit, not part of a registration PR).
+// a known type, a real description, an https URL, an author, an ISO date.
+//
+// verified is event-aware: a REGISTRATION PR must carry verified === false
+// (the operator flips it to true on main after review). Enforcing strict
+// false on every CI run would make the operator's own flip permanently fail
+// main, so the strict check applies only when running as a pull_request.
+// Locally (no GITHUB_EVENT_NAME) both values validate — the PR gate is the
+// strict one.
 
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -65,7 +70,11 @@ for (const [i, e] of data.integrations.entries()) {
   if (typeof e?.addedAt !== 'string' || !DATE_RE.test(e.addedAt) || !isCalendarDate(e.addedAt)) {
     fail(`${at}: addedAt must be a real calendar date (YYYY-MM-DD)`);
   }
-  if (e?.verified !== false) fail(`${at}: verified must be false in a registration PR (operator flips it after review)`);
+  // Strict only on pull_request: registration PRs must carry verified ===
+  // false; the operator's post-review flip (true, on main) must not fail CI.
+  if (e?.verified !== false && process.env.GITHUB_EVENT_NAME === 'pull_request') {
+    fail(`${at}: verified must be false in a registration PR (the operator flips it to true after review)`);
+  }
 }
 
 console.log(`OK: registry valid — ${data.integrations.length} integration(s)`);

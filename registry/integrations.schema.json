@@ -50,8 +50,8 @@
             "description": "Registration date, YYYY-MM-DD, must be a real calendar day."
           },
           "verified": {
-            "const": false,
-            "description": "Always false in a registration PR. The operator sets true after checking real traffic and rule compliance."
+            "type": "boolean",
+            "description": "false in a registration PR. The operator sets true after checking real traffic and rule compliance; validate-registry.mjs enforces the false-only rule in pull_request CI runs."
           }
         }
       }

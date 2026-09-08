@@ -115,7 +115,12 @@ export class EconomyClient {
     return map;
   }
 
-  /** 설정 값 하나 (없으면 fallback). */
+  /**
+   * 설정 값 하나 (없으면 fallback). 주의 — 읽기 실패(401·429·네트워크 오류 포함)도
+   * 예외가 아니라 fallback으로 삼킨다. 설정은 부가 정보라 봇이 죽지 않는 쪽을 택한
+   * 것인데, 대신 값이 오래됐을 수 있다. 운영 문제를 눈에 띄게 보려면 이 메서드 대신
+   * getConfigMap()을 직접 써라(이쪽은 던진다).
+   */
   async getConfigValue(key, fallback) {
     const map = await this.getConfigMap().catch(() => new Map());
     return map.has(key) ? map.get(key) : fallback;

@@ -29,6 +29,13 @@ const fail = (msg) => {
   process.exit(1);
 };
 
+// DATE_RE proves the shape; this proves the shape is a real day — 2026-02-30
+// and 2026-99-99 must both fail. Day 0 of month m+1 is the last day of month m.
+function isCalendarDate(s) {
+  const [y, m, d] = s.split('-').map(Number);
+  return m >= 1 && m <= 12 && d >= 1 && d <= new Date(Date.UTC(y, m, 0)).getUTCDate();
+}
+
 if (data.version !== 1) fail(`version must be 1, got ${JSON.stringify(data.version)}`);
 if (!Array.isArray(data.integrations)) fail('integrations must be an array');
 
@@ -55,8 +62,8 @@ for (const [i, e] of data.integrations.entries()) {
   if (typeof e?.author !== 'string' || e.author.length < 1 || e.author.length > 40) {
     fail(`${at}: author must be a string of 1..40 chars`);
   }
-  if (typeof e?.addedAt !== 'string' || !DATE_RE.test(e.addedAt)) {
-    fail(`${at}: addedAt must be YYYY-MM-DD`);
+  if (typeof e?.addedAt !== 'string' || !DATE_RE.test(e.addedAt) || !isCalendarDate(e.addedAt)) {
+    fail(`${at}: addedAt must be a real calendar date (YYYY-MM-DD)`);
   }
   if (e?.verified !== false) fail(`${at}: verified must be false in a registration PR (operator flips it after review)`);
 }

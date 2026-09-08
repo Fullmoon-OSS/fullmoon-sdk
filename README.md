@@ -47,8 +47,9 @@ curl -s -H "Authorization: Bearer $ECONOMY_API_KEY" \
      https://api.fullmoon.ink/economy/v1/overview
 ```
 
-`429`가 오면 rate limit(IP당 10 req/s, burst 40)에 걸린 거다. 정상 봇 트래픽으로는
-닿을 일이 없고, 루프 돌려 긁을 때만 걸린다. 백오프하고 재시도하면 된다.
+`429`가 오면 레이트리밋에 걸린 거다 — 두 계층이 있다: nginx(IP당 10 req/s, burst 40)와
+앱(키당 기본 60req/10s). 정상 봇 트래픽으로는 닿을 일이 없고, 루프 돌려 긁을 때만
+걸린다. 백오프하고 재시도하면 된다.
 
 ```js
 import { EconomyClient } from './economyClient.js';
@@ -87,6 +88,11 @@ const wal = await eco.getWalletByMc('SteveMan');   // 런처/클라이언트용 
 
 클라이언트 예외 모델: `401/403/429/5xx`는 **던진다**(운영 문제라 크게 실패해야
 눈에 띈다), `404`는 `null`/빈 배열로 돌려준다(정상적인 업무 결과).
+
+예외가 하나 있다: `getConfigValue()`는 읽기 실패(401·429·네트워크 오류 포함)를
+삼키고 fallback을 돌려준다 — 설정은 부가 정보라 봇이 죽지 않는 쪽을 택했다.
+대신 값이 오래됐을 수 있다. 운영 문제를 크게 보고 싶으면 `getConfigMap()`을
+직접 써라(이쪽은 정상적으로 던진다).
 
 ## 통합 등록 — 플러그인 마켓
 

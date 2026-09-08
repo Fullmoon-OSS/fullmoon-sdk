@@ -8,7 +8,7 @@
   적어주면 큰 도움이 돼요.
 - **예제 추가** — `examples/`에 실행 가능한 예제로 PR을 주세요. `node --check`를
   통과하고, 3가지 철칙(README 참고)을 어기면 안 돼요.
-- **통합 등록** — `INTEGRATIONS.md`의 절차대로 `registry/integrations.json`에
+- **모듈 등록** — `MODULES.md`의 절차대로 `registry/modules.json`에
   PR을 주세요.
 - **문서 개선** — 틀리거나 빠진 부분은 언제나 환영이에요.
 
@@ -23,7 +23,7 @@
 
 ## 공개 문구 어조
 
-카탈로그 항목 소개(`registry/integrations.json`의 `description`), README, 공지·
+카탈로그 항목 소개(`registry/modules.json`의 `description`), README, 공지·
 안내 문구처럼 플레이어나 외부 사용자에게 노출되는 글은 **별도 지시가 없는 한
 무조건 친절한 해요체**로 써 주세요(합쇼체·반말 금지). API 레퍼런스의 표·코드
 블록처럼 기계가 읽는 부분은 제외예요.

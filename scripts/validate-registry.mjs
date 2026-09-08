@@ -1,7 +1,7 @@
-// Validates registry/integrations.json against the INTEGRATIONS.md schema.
-// CI runs this, so a malformed registry entry fails the PR before review.
+// Validates registry/modules.json against the MODULES.md schema.
+// CI runs this, so a malformed module entry fails the PR before review.
 //
-// Rules: version === 1; integrations is an array; each entry has a name,
+// Rules: version === 1; modules is an array; each entry has a name,
 // a known type, a real description, an https URL, an author, an ISO date.
 //
 // verified is event-aware: a REGISTRATION PR must carry verified === false
@@ -16,7 +16,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const path = join(root, 'registry', 'integrations.json');
+const path = join(root, 'registry', 'modules.json');
 
 const TYPES = new Set(['bot', 'dashboard', 'tool', 'client']);
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
@@ -42,11 +42,11 @@ function isCalendarDate(s) {
 }
 
 if (data.version !== 1) fail(`version must be 1, got ${JSON.stringify(data.version)}`);
-if (!Array.isArray(data.integrations)) fail('integrations must be an array');
+if (!Array.isArray(data.modules)) fail('modules must be an array');
 
 const seen = new Set();
-for (const [i, e] of data.integrations.entries()) {
-  const at = `integrations[${i}]`;
+for (const [i, e] of data.modules.entries()) {
+  const at = `modules[${i}]`;
   const name = e?.name;
   if (typeof name !== 'string' || name.length < 1 || name.length > 40) {
     fail(`${at}: name must be a string of 1..40 chars`);
@@ -77,4 +77,4 @@ for (const [i, e] of data.integrations.entries()) {
   }
 }
 
-console.log(`OK: registry valid — ${data.integrations.length} integration(s)`);
+console.log(`OK: registry valid — ${data.modules.length} module(s)`);

@@ -8,7 +8,7 @@
 |---|---|
 | [fullmoon-docs](https://github.com/Fullmoon-OSS/fullmoon-docs) | 시작 가이드·정책 등 전체 문서예요 |
 | [fullmoon-economy-api](https://github.com/Fullmoon-OSS/fullmoon-economy-api) | 읽기 전용 API 서버 소스예요 |
-| [fullmoon-market](https://github.com/Fullmoon-OSS/fullmoon-market) | 통합 카탈로그 사이트 — [market.fullmoon.ink](https://market.fullmoon.ink) |
+| [fullmoon-modules](https://github.com/Fullmoon-OSS/fullmoon-modules) | 커뮤니티 모듈 카탈로그 사이트 — [modules.fullmoon.ink](https://modules.fullmoon.ink) |
 | [fullmoon-client](https://github.com/RedHatOnTop/fullmoon-client) | 풀문 전용 마인크래프트 클라이언트예요 |
 
 ## 무엇을 할 수 있나요? (그리고 없나요?)
@@ -96,12 +96,13 @@ const wal = await eco.getWalletByMc('SteveMan');   // 런처/클라이언트용 
 대신 값이 오래됐을 수 있어요. 운영 문제를 크게 보고 싶으면 `getConfigMap()`을
 직접 쓰세요(이쪽은 정상적으로 던져요).
 
-## 통합 등록 — 플러그인 마켓
+## 커뮤니티 모듈 등록
 
 이 SDK·API 위에 만든 봇·대시보드·도구는
-[market.fullmoon.ink](https://market.fullmoon.ink) 카탈로그에 등록할 수 있어요.
-카탈로그 데이터는 이 레포의 [INTEGRATIONS.md](./INTEGRATIONS.md)와
-[registry/integrations.json](./registry/integrations.json)이 관리하고, 등록 절차는
+[modules.fullmoon.ink](https://modules.fullmoon.ink) 모듈 카탈로그에 등록할 수
+있어요. 풀문은 단일 서버 커뮤니티라 마켓플레이스가 아니라 **커뮤니티 모듈**로
+불러요. 카탈로그 데이터는 이 레포의 [MODULES.md](./MODULES.md)와
+[registry/modules.json](./registry/modules.json)이 관리하고, 등록 절차는
 [CONTRIBUTING.md](./CONTRIBUTING.md)에 있어요.
 
 ## 파일 안내
@@ -112,9 +113,9 @@ const wal = await eco.getWalletByMc('SteveMan');   // 런처/클라이언트용 
 | `examples/balance-and-ranking.js` | 잔액·거래내역·랭킹 표시 예제예요 |
 | `examples/dashboard-poller.js` | 경제 대시보드 데이터 수집 예제예요 (키 하나로 전부) |
 | `test/client.test.js` | 클라이언트 계약 테스트예요 (스텁 서버 기반, 무DB) |
-| `registry/integrations.json` | 통합 카탈로그 데이터예요 — 마켓 사이트가 이걸 읽어요 |
-| `registry/integrations.schema.json` | 카탈로그 항목의 JSON Schema예요 — 도구·LLM이 등록 PR 전 검증에 써요 |
-| `INTEGRATIONS.md` | 통합 등록 절차·카탈로그예요 |
+| `registry/modules.json` | 커뮤니티 모듈 카탈로그 데이터예요 — 모듈 사이트가 이걸 읽어요 |
+| `registry/modules.schema.json` | 카탈로그 항목의 JSON Schema예요 — 도구·LLM이 등록 PR 전 검증에 써요 |
+| `MODULES.md` | 모듈 등록 절차·카탈로그예요 |
 | `AGENTS.md` | 에이전트(LLM) 기여자용 불변식 요약이에요 |
 
 ## FAQ

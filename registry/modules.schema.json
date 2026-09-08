@@ -1,14 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/Fullmoon-OSS/fullmoon-sdk/blob/main/registry/integrations.schema.json",
+  "$id": "https://github.com/Fullmoon-OSS/fullmoon-sdk/blob/main/registry/modules.schema.json",
   "title": "Fullmoon integration registry",
-  "description": "Catalog data rendered by market.fullmoon.ink. Registration PRs must satisfy this schema; scripts/validate-registry.mjs (CI) enforces the same rules. verified must be false in registration PRs - only the operator flips it to true after review.",
+  "description": "Module catalog data rendered by modules.fullmoon.ink. Registration PRs must satisfy this schema; scripts/validate-registry.mjs (CI) enforces the same rules. verified must be false in registration PRs - only the operator flips it to true after review.",
   "type": "object",
-  "required": ["version", "integrations"],
+  "required": ["version", "modules"],
   "additionalProperties": false,
   "properties": {
     "version": { "const": 1 },
-    "integrations": {
+    "modules": {
       "type": "array",
       "items": {
         "type": "object",

@@ -10,12 +10,11 @@
 
 - fullmoon-economy-api (읽기 전용 경제 API)
 - fullmoon-sdk (공식 클라이언트)
-- fullmoon-modules (이 카탈로그 사이트)
+- fullmoon-sdk (이 저장소 — 의존성 0 클라이언트예요)
 
 ## 알려진 설계 상태
 
-- 이 사이트는 정적이고 데이터는 레지스트리 JSON 하나예요. 렌더러는 모든
-  문자열을 escape하고 https 링크만 허용해요.
+- 이 저장소의 클라이언트는 키를 프로세스 메모리에서만 쓰고 쓰기 경로가 없어요.
 - 경제 API는 읽기 전용이라 유출 가능한 쓰기 권한이 없어요 (키 = 읽기).
 
 자세한 정책: [fullmoon-docs/docs/policies.md](https://github.com/Fullmoon-OSS/fullmoon-docs/blob/main/docs/policies.md)

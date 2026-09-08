@@ -131,7 +131,7 @@ const wal = await eco.getWalletByMc('SteveMan');   // 런처/클라이언트용 
 
 ```bash
 npm test                 # node --test — 스텁 서버 기반 계약 테스트예요
-npm run validate:registry # 통합 카탈로그 스키마 검증이에요 — CI도 돌려요
+npm run validate:registry # 모듈 카탈로그 스키마 검증이에요 — CI도 돌려요
 ```
 
 ## 라이선스

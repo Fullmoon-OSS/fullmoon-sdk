@@ -1,4 +1,4 @@
-# SDK CI: client contract tests + integration-registry schema validation.
+# SDK CI: client contract tests + module-registry schema validation.
 # Zero dependencies, so no npm ci — the Node global API surface (fetch,
 # AbortSignal.timeout, node:test) is the whole stack.
 
@@ -30,7 +30,7 @@ jobs:
         run: npm test
 
   registry:
-    name: Integration registry schema
+    name: Module registry schema
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5

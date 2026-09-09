@@ -1,0 +1,46 @@
+name: API 키 발급 요청
+description: 경제 API 읽기 키를 신청해요 (키 자체는 비공개 채널로 전달돼요)
+title: "[키 발급] "
+labels: ["key-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        풀문 공유 경제 API의 **읽기 전용** 키를 신청하는 곳이에요.
+
+        - 키 하나 = 읽기 전부 (잔액·거래·랭킹·집계 조회). 쓰기 권한은
+          설계상 존재하지 않아요.
+        - **키 자체는 이 이슈에 올리지 않아요** — 운영자가 확인 후 비공개
+          채널(디스코드 DM)로 전달해요.
+        - 발급까지 보통 하루 안에 걸려요.
+  - type: input
+    id: project-name
+    attributes:
+      label: 봇/프로젝트 이름
+      description: API 클라이언트로 등록될 이름이에요 (소문자, 숫자, -, _만 사용).
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: 무엇을 만드나요?
+      description: 어떤 화면/기능에서 어떤 데이터(잔액·랭킹·집계 등)를 읽을 건지 적어주세요.
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: 연락처
+      description: 키 전달받을 디스코드 핸들이나 다른 비공개 연락 수단이에요.
+    validations:
+      required: true
+  - type: checkboxes
+    id: rules
+    attributes:
+      label: 체크
+      options:
+        - label: 잔액을 캐시하지 않고 표시 직전에 조회할게요
+        - label: 자체 화폐/잔액 테이블을 만들지 않을게요
+        - label: 배수·캡 같은 숫자는 /v1/config에서 읽을게요
+    validations:
+      required: true

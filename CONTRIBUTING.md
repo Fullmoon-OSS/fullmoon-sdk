@@ -8,8 +8,9 @@
   적어주면 큰 도움이 돼요.
 - **예제 추가** — `examples/`에 실행 가능한 예제로 PR을 주세요. `node --check`를
   통과하고, 3가지 철칙(README 참고)을 어기면 안 돼요.
-- **모듈 등록** — `MODULES.md`의 절차대로 `registry/modules.json`에
-  PR을 주세요.
+- **모듈 등록** — git이 편하면 `registry/modules.json`에 PR, 아니면
+  [모듈 등록 이슈](https://github.com/Fullmoon-OSS/fullmoon-sdk/issues/new?template=module-registration.yml)
+  한 장이면 돼요. 운영자가 대신 넣어줘요.
 - **문서 개선** — 틀리거나 빠진 부분은 언제나 환영이에요.
 
 ## 클라이언트 코드를 고칠 때
@@ -30,8 +31,10 @@
 
 ## PR 규칙
 
-- 브랜치 이름: `feat/...`, `fix/...`, `docs/...` 형식을 써 주세요.
-- 커밋은 Conventional Commits 형식이에요.
+- 레지스트리 항목(등록·수정)만 바꾸는 PR이라면 브랜치 이름·커밋 형식 신경
+  안 써도 돼요 — 운영자가 squash로 정리해요. CI(레지스트리 검증)만 통과하면
+  돼요.
+- 클라이언트 코드·문서 PR: 커밋은 Conventional Commits 형식이면 가장 좋아요.
 - CI(클라이언트 테스트 + 레지스트리 검증)가 초록이어야 병합해요.
 
 ## 라이선스

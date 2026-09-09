@@ -23,10 +23,23 @@
 
 ## 등록 절차
 
+git이 편한 개발자는 PR로, 아니면 **이슈 한 장**으로도 등록할 수 있어요.
+기여 자체가 진입장벽이 되지 않는 게 이 카탈로그의 원칙이에요 — 번거로운 쪽은
+언제나 운영자가 감수해요.
+
+### 방법 A — 이슈 한 장 (git 불필요)
+
+[모듈 등록 이슈](https://github.com/Fullmoon-OSS/fullmoon-sdk/issues/new?template=module-registration.yml)를
+열어 이름·유형·소개·링크를 적어 제출하면 끝이에요. 운영자가 확인해서
+`registry/modules.json`에 대신 넣어주고, 병합되면 모듈 사이트에 바로 반영돼요.
+
+### 방법 B — 직접 PR
+
 1. 이 레포를 포크해요.
 2. [`registry/modules.json`](./registry/modules.json)에 항목을 추가해요.
    스키마는 아래와 같아요.
-3. `npm run validate:registry`가 통과하는지 확인해요. CI도 같은 검증을 돌려요.
+3. 로컬에 Node가 있으면 `npm run validate:registry`를 돌려보세요. 없어도 괜찮아요
+   — CI가 PR에서 같은 검증을 돌려줘요.
 4. PR을 보내요. 운영자가 확인 후 병합해요. 병합되면 모듈 사이트에 바로 반영돼요.
 
 ### 항목 스키마

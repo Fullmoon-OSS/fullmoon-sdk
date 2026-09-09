@@ -1,0 +1,59 @@
+name: 모듈 등록
+description: 커뮤니티 모듈 카탈로그에 내 봇·대시보드·도구를 등록해요 (git 불필요)
+title: "[모듈] "
+labels: ["module-registration"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        카탈로그 등록 신청서예요. 운영자가 확인해서 `registry/modules.json`에
+        대신 넣어주고, 병합되면 [modules.fullmoon.ink](https://modules.fullmoon.ink)에
+        바로 반영돼요. git 포크·PR이 필요 없는 경로예요.
+
+        등록 전에 [MODULES.md](https://github.com/Fullmoon-OSS/fullmoon-sdk/blob/main/MODULES.md)의
+        3가지 철칙(잔액 캐시 금지 · 자체 화폐 금지 · 숫자 하드코딩 금지)을
+        확인해 주세요 — 등록 유지 조건이에요.
+  - type: input
+    id: name
+    attributes:
+      label: 모듈 이름
+      description: 카탈로그에 표시될 이름이에요 (40자 이내).
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: 유형
+      options:
+        - bot (디스코드 봇)
+        - dashboard (웹 대시보드)
+        - tool (기타 도구)
+        - client (마인크래프트 클라이언트/런처)
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: 한 줄 소개
+      description: 무엇을 보여주는지 5~120자로 적어주세요. 카탈로그에 그대로 노출돼요.
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: 링크 (https)
+      description: 디스코드 봇 초대 링크, 웹사이트, 또는 공개 레포예요.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: 소스 레포 (선택 — 봇/도구는 강력 권장)
+      description: 모듈 코드가 공개되어 있는 레포예요. 운영자가 병합 전에 심사해요.
+  - type: input
+    id: author
+    attributes:
+      label: 제작자 핸들
+      description: 카탈로그에 표시될 제작자 이름이에요 (40자 이내).
+    validations:
+      required: true

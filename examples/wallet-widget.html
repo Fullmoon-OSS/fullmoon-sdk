@@ -1,0 +1,67 @@
+<!doctype html>
+<!-- 시나리오 1 — "서버 사이트에 붙이는 미니 지갑 위젯".
+     MC 사용자명으로 잔액·랭킹·최근 내역을 보여주는 단일 파일 위젯.
+     이 시나리오에서 by-mc 응답에 rank(원장 랭킹)가 필요해졌고,
+     GET /v1/accounts/{id} 응답에 rank 필드가 추가됐다.
+
+     사용: wallet-widget.html?player=MC이름 으로 열거나, iframe으로 삽입.
+     주의: API 키가 페이지 소스에 노출되므로, 이 위젯을 실제 사이트에 붙일
+     때는 키를 아는 사람이 운영자뿐인 페이지(운영 사이트)에서만 쓰세요.
+     외부 공개 페이지라면 리버스 프록시가 키를 붙여 주도 구성하세요.
+-->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>풀문 미니 지갑</title>
+<style>
+  body { font-family: sans-serif; background: #10131f; color: #f4f6fb; margin: 0; padding: 16px; }
+  .card { border: 1px solid #2a3350; border-radius: 8px; padding: 16px; max-width: 360px; }
+  .balance { font-size: 28px; font-weight: 700; }
+  .rank { color: #9aa3b8; }
+  table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; }
+  td { padding: 4px 0; border-top: 1px solid #232b45; }
+  .plus { color: #7dd87d; } .minus { color: #ff8fa3; }
+  .err { color: #ff8fa3; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="rank" id="rank"></div>
+  <div class="balance" id="balance">…</div>
+  <table id="recent"></table>
+  <div class="err" id="err"></div>
+</div>
+<script type="module">
+  // MC 사용자명은 ?player= 로, API 키는 ?key= 로 받는다 (운영 페이지 한정).
+  const q = new URLSearchParams(location.search);
+  const player = q.get('player') || 'Steve';
+  const BASE = 'https://api.fullmoon.ink/economy';
+  const KEY = q.get('key') || '';
+
+  const res = await fetch(`${BASE}/v1/accounts/by-mc/${encodeURIComponent(player)}`, {
+    headers: { authorization: `Bearer ${KEY}` },
+  });
+
+  if (res.status === 404) {
+    document.getElementById('balance').textContent = '아직 지갑이 없어요';
+  } else if (!res.ok) {
+    document.getElementById('err').textContent =
+      res.status === 401 ? '키가 없거나 만료됐어요 (운영자 문의)'
+      : res.status === 429 ? '잠시 후 다시 시도해 주세요'
+      : `조회 실패 (${res.status})`;
+  } else {
+    const body = await res.json();
+    document.getElementById('rank').textContent =
+      body.rank ? `원장 랭킹 ${body.rank}위` : '신규 모험가';
+    document.getElementById('balance').textContent =
+      `${body.wallet.balance.toLocaleString('ko-KR')}원`;
+    document.getElementById('recent').innerHTML = body.transactions.slice(0, 5).map((t) => {
+      const sign = t.delta >= 0 ? '+' : '';
+      const cls = t.delta >= 0 ? 'plus' : 'minus';
+      return `<tr><td>${t.label}</td><td class="${cls}" style="text-align:right">${sign}${t.delta.toLocaleString('ko-KR')}</td></tr>`;
+    }).join('');
+  }
+</script>
+</body>
+</html>

@@ -29,6 +29,12 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: Syntax-check examples
+        run: |
+          for f in examples/*.mjs; do
+            node --check "$f"
+          done
+
   registry:
     name: Module registry schema
     runs-on: ubuntu-latest

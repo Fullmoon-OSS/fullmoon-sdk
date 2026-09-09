@@ -52,13 +52,25 @@ const server = createServer((req, res) => {
     return send(res, 404, { ok: false, error: 'no such account' });
   }
   if (path === '/v1/accounts/123456789/transactions') {
+    const before = url.searchParams.get('before');
     return send(res, 200, {
       ok: true,
       transactions: [{
+        id: before ? 40 : 41,
         delta: 10, balanceAfter: 510, reason: 'discord.daily', source: 'bot',
         refId: 'daily:2026-09-08', createdAt: '2026-09-08T00:00:00.000Z',
       }],
+      nextBefore: before ? null : 41,
     });
+  }
+  if (path === '/v1/events') {
+    return send(res, 200, { ok: true, events: [{ name: '두 배 드롭', kind: 'drop_rate', multiplier: 2, startsAt: '2026-09-08T00:00:00Z', endsAt: null }] });
+  }
+  if (path === '/v1/guilds') {
+    return send(res, 200, { ok: true, guilds: [{ name: '달빛기사단', fund: 50000, members: 12 }] });
+  }
+  if (path === '/v1/casino/history') {
+    return send(res, 200, { ok: true, days: [{ date: '2026-09-07', wagered: 500, paidOut: 450, netBurn: 50 }] });
   }
   if (path === '/v1/accounts/by-mc/SteveMan') {
     return send(res, 200, {
@@ -159,6 +171,22 @@ test('auth failures throw loudly — an operator problem, not a business result'
 test('429 throws — the client refuses to swallow a rate limit', async () => {
   await eco.getCasinoToday(); // first hit: 200, warms nothing
   await assert.rejects(() => eco.getCasinoToday(), /429/);
+});
+
+test('getTransactionsPage pages with a before cursor', async () => {
+  const page = await eco.getTransactionsPage('123456789', { limit: 5, before: 41 });
+  assert.equal(page.transactions[0].id, 40); // stub echoes the cursor
+  assert.equal(page.nextBefore, null);
+});
+
+test('module reads: events / guilds / casino history', async () => {
+  assert.deepEqual(await eco.getEvents(), [
+    { name: '두 배 드롭', kind: 'drop_rate', multiplier: 2, startsAt: '2026-09-08T00:00:00Z', endsAt: null },
+  ]);
+  assert.deepEqual(await eco.getGuilds(), [{ name: '달빛기사단', fund: 50000, members: 12 }]);
+  assert.deepEqual(await eco.getCasinoHistory(7), [
+    { date: '2026-09-07', wagered: 500, paidOut: 450, netBurn: 50 },
+  ]);
 });
 
 test('no write methods survive on the client', () => {

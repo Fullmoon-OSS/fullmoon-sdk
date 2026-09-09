@@ -86,6 +86,32 @@ export class EconomyClient {
     return r.ok ? r.leaderboard : [];
   }
 
+  async getEvents() {
+    const r = await this._get('/v1/events');
+    return r.ok ? r.events : [];
+  }
+
+  async getGuilds() {
+    const r = await this._get('/v1/guilds');
+    return r.ok ? r.guilds : [];
+  }
+
+  async getCasinoHistory(days = 30) {
+    const r = await this._get(`/v1/casino/history?days=${days}`);
+    return r.ok ? r.days : [];
+  }
+
+  /**
+   * 거래 내역을 페이지 단위로 조회해요 (id 커서). 다음 페이지는 반환값의
+   * nextBefore를 before로 넘기면 돼요. 더 없으면 nextBefore가 null이에요.
+   */
+  async getTransactionsPage(discordId, { limit = 10, before } = {}) {
+    const q = new URLSearchParams({ limit: String(limit) });
+    if (before) q.set('before', String(before));
+    const r = await this._get(`/v1/accounts/${discordId}/transactions?${q}`);
+    return r.ok ? { transactions: r.transactions, nextBefore: r.nextBefore ?? null } : null;
+  }
+
   // 대시보드용 집계
   async getOverview() { return this._get('/v1/overview'); }
   async getDailyStats(days = 14) { return this._get(`/v1/stats/daily?days=${days}`); }

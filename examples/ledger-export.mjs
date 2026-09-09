@@ -48,10 +48,11 @@ for (;;) {
 process.stdout.write('\n');
 
 const header = 'id,일시,금액,잔액,사유,출처,참조ID';
+const q = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`; // CSV quote-escape
 const csv = [
   header,
   ...rows.map((t) =>
-    [t.id, t.createdAt, t.delta, t.balanceAfter, `"${t.reason}"`, `"${t.source}"`, t.refId ?? ''].join(',')
+    [t.id, q(t.createdAt), t.delta, t.balanceAfter, q(t.reason), q(t.source), q(t.refId ?? '')].join(',')
   ),
 ].join('\n');
 

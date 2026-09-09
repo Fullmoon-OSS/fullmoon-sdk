@@ -53,7 +53,7 @@
   } else {
     const body = await res.json();
     document.getElementById('rank').textContent =
-      body.rank ? `원장 랭킹 ${body.rank}위` : '신규 모험가';
+      body.wallet.rank ? `원장 랭킹 ${body.wallet.rank}위` : '신규 모험가';
     document.getElementById('balance').textContent =
       `${body.wallet.balance.toLocaleString('ko-KR')}원`;
     document.getElementById('recent').innerHTML = body.transactions.slice(0, 5).map((t) => {

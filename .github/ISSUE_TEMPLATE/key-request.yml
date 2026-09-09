@@ -12,12 +12,11 @@ body:
           설계상 존재하지 않아요.
         - **키 자체는 이 이슈에 올리지 않아요** — 운영자가 확인 후 비공개
           채널(디스코드 DM)로 전달해요.
-        - 발급까지 보통 하루 안에 걸려요.
   - type: input
     id: project-name
     attributes:
       label: 봇/프로젝트 이름
-      description: API 클라이언트로 등록될 이름이에요 (소문자, 숫자, -, _만 사용).
+      description: API 클라이언트로 등록될 이름이에요 (소문자, 숫자, -, _만 사용, 32자 이내).
     validations:
       required: true
   - type: textarea

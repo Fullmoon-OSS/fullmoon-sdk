@@ -9,7 +9,7 @@
 | [fullmoon-docs](https://github.com/Fullmoon-OSS/fullmoon-docs) | 시작 가이드·정책 등 전체 문서예요 |
 | [fullmoon-economy-api](https://github.com/Fullmoon-OSS/fullmoon-economy-api) | 읽기 전용 API 서버 소스예요 |
 | [fullmoon-modules](https://github.com/Fullmoon-OSS/fullmoon-modules) | 커뮤니티 모듈 카탈로그 사이트 — [modules.fullmoon.ink](https://modules.fullmoon.ink) |
-| [fullmoon-client](https://github.com/RedHatOnTop/fullmoon-client) | 풀문 전용 마인크래프트 클라이언트예요 |
+| [fullmoon-client](https://github.com/Fullmoon-OSS/fullmoon-client) | 풀문 전용 마인크래프트 클라이언트예요 |
 
 ## 무엇을 할 수 있나요? (그리고 없나요?)
 

@@ -56,11 +56,19 @@
       body.wallet.rank ? `원장 랭킹 ${body.wallet.rank}위` : '신규 모험가';
     document.getElementById('balance').textContent =
       `${body.wallet.balance.toLocaleString('ko-KR')}원`;
-    document.getElementById('recent').innerHTML = body.transactions.slice(0, 5).map((t) => {
-      const sign = t.delta >= 0 ? '+' : '';
-      const cls = t.delta >= 0 ? 'plus' : 'minus';
-      return `<tr><td>${t.label}</td><td class="${cls}" style="text-align:right">${sign}${t.delta.toLocaleString('ko-KR')}</td></tr>`;
-    }).join('');
+    document.getElementById('recent').innerHTML = '';
+    for (const t of body.transactions.slice(0, 5)) {
+      // API 데이터라도 시작점에서는 textContent로만 채운다 (주입 방어 기본값).
+      const tr = document.createElement('tr');
+      const label = document.createElement('td');
+      label.textContent = t.label;
+      const amount = document.createElement('td');
+      amount.className = t.delta >= 0 ? 'plus' : 'minus';
+      amount.style.textAlign = 'right';
+      amount.textContent = (t.delta >= 0 ? '+' : '') + t.delta.toLocaleString('ko-KR');
+      tr.append(label, amount);
+      document.getElementById('recent').append(tr);
+    }
   }
 </script>
 </body>

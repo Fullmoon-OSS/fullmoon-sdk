@@ -38,7 +38,12 @@ for (;;) {
       console.error('조회 실패:', err.message);
       process.exit(1);
     });
-  if (!page || page.transactions.length === 0) break;
+  // null = 그 디스코드 ID의 계정이 없다는 뜻 (빈 CSV를 "성공"으로 저장하지 않는다).
+  if (page === null) {
+    console.error(`디스코드 ID ${discordId} 의 계정이 없어요. ID를 확인해 주세요.`);
+    process.exit(1);
+  }
+  if (page.transactions.length === 0) break;
   rows.push(...page.transactions);
   pages += 1;
   process.stdout.write(`\r${rows.length}건 읽는 중 (페이지 ${pages})…`);

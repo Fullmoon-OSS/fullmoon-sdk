@@ -64,7 +64,7 @@ const server = createServer((req, res) => {
     });
   }
   if (path === '/v1/events') {
-    return send(res, 200, { ok: true, events: [{ name: '두 배 드롭', kind: 'drop_rate', multiplier: 2, startsAt: '2026-09-08T00:00:00Z', endsAt: null }] });
+    return send(res, 200, { ok: true, events: [{ name: '두 배 드롭', kind: 'drop_rate', multiplier: 2, startsAt: '2026-09-08T00:00:00Z', endsAt: '2026-09-10T00:00:00Z' }] });
   }
   if (path === '/v1/guilds') {
     return send(res, 200, { ok: true, guilds: [{ name: '달빛기사단', fund: 50000, members: 12 }] });
@@ -181,7 +181,7 @@ test('getTransactionsPage pages with a before cursor', async () => {
 
 test('module reads: events / guilds / casino history', async () => {
   assert.deepEqual(await eco.getEvents(), [
-    { name: '두 배 드롭', kind: 'drop_rate', multiplier: 2, startsAt: '2026-09-08T00:00:00Z', endsAt: null },
+    { name: '두 배 드롭', kind: 'drop_rate', multiplier: 2, startsAt: '2026-09-08T00:00:00Z', endsAt: '2026-09-10T00:00:00Z' },
   ]);
   assert.deepEqual(await eco.getGuilds(), [{ name: '달빛기사단', fund: 50000, members: 12 }]);
   assert.deepEqual(await eco.getCasinoHistory(7), [

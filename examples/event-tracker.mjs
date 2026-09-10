@@ -27,10 +27,8 @@ async function print() {
     return;
   }
   for (const e of events) {
-    const remain = e.endsAt
-      ? `~ ${Math.max(0, Math.ceil((new Date(e.endsAt) - Date.now()) / 3600_000))}시간 남음`
-      : '종료 시간 미정';
-    console.log(`[${e.kind}] ${e.name}  ×${e.multiplier}  (${remain})`);
+    const hoursLeft = Math.max(0, Math.ceil((new Date(e.endsAt) - Date.now()) / 3600_000));
+    console.log(`[${e.kind}] ${e.name}  ×${e.multiplier}  (~${hoursLeft}시간 남음)`);
   }
 }
 

@@ -1,5 +1,5 @@
 // economyClient.js — 풀문 공유 경제 API 공식 클라이언트 (복사해서 봇 프로젝트에 넣으세요)
-// 최신 버전과 문서: https://github.com/Fullmoon-OSS/fullmoon-sdk
+// 최신 버전과 문서: https://github.com/fullmoon-network/fullmoon-sdk
 //
 // 의존성 없음. Node 18+ (전역 fetch). ESM.
 //   import { EconomyClient } from './economyClient.js';

@@ -11,7 +11,7 @@ import { EconomyClient } from '../economyClient.js';
 
 if (!process.env.ECONOMY_API_KEY) {
   console.error('ECONOMY_API_KEY 가 없어요. [API 키 발급 이슈]로 신청하세요:');
-  console.error('https://github.com/Fullmoon-OSS/fullmoon-sdk/issues/new?template=key-request.yml');
+  console.error('https://github.com/fullmoon-network/fullmoon-sdk/issues/new?template=key-request.yml');
   process.exit(1);
 }
 

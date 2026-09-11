@@ -10,7 +10,7 @@ body:
         대신 넣어주고, 병합되면 [modules.fullmoon.ink](https://modules.fullmoon.ink)에
         바로 반영돼요. git 포크·PR이 필요 없는 경로예요.
 
-        등록 전에 [MODULES.md](https://github.com/Fullmoon-OSS/fullmoon-sdk/blob/main/MODULES.md)의
+        등록 전에 [MODULES.md](https://github.com/fullmoon-network/fullmoon-sdk/blob/main/MODULES.md)의
         3가지 철칙(잔액 캐시 금지 · 자체 화폐 금지 · 숫자 하드코딩 금지)을
         확인해 주세요 — 등록 유지 조건이에요.
   - type: input

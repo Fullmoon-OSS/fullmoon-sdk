@@ -6,10 +6,10 @@
 
 | 관련 레포 | 내용 |
 |---|---|
-| [fullmoon-docs](https://github.com/Fullmoon-OSS/fullmoon-docs) | 시작 가이드·정책 등 전체 문서예요 |
-| [fullmoon-economy-api](https://github.com/Fullmoon-OSS/fullmoon-economy-api) | 읽기 전용 API 서버 소스예요 |
-| [fullmoon-modules](https://github.com/Fullmoon-OSS/fullmoon-modules) | 커뮤니티 모듈 카탈로그 사이트 — [modules.fullmoon.ink](https://modules.fullmoon.ink) |
-| [fullmoon-client](https://github.com/Fullmoon-OSS/fullmoon-client) | 풀문 전용 마인크래프트 클라이언트예요 |
+| [fullmoon-docs](https://github.com/fullmoon-network/fullmoon-docs) | 시작 가이드·정책 등 전체 문서예요 |
+| [fullmoon-economy-api](https://github.com/fullmoon-network/fullmoon-economy-api) | 읽기 전용 API 서버 소스예요 |
+| [fullmoon-modules](https://github.com/fullmoon-network/fullmoon-modules) | 커뮤니티 모듈 카탈로그 사이트 — [modules.fullmoon.ink](https://modules.fullmoon.ink) |
+| [fullmoon-client](https://github.com/fullmoon-network/fullmoon-client) | 풀문 전용 마인크래프트 클라이언트예요 |
 
 ## 무엇을 할 수 있나요? (그리고 없나요?)
 
@@ -32,7 +32,7 @@
 
 ## 시작하기 (5분)
 
-1. **키 발급을 요청해요** — [API 키 발급 이슈](https://github.com/Fullmoon-OSS/fullmoon-sdk/issues/new?template=key-request.yml)로
+1. **키 발급을 요청해요** — [API 키 발급 이슈](https://github.com/fullmoon-network/fullmoon-sdk/issues/new?template=key-request.yml)로
    봇 이름과 용도를 적어 제출하면 돼요(디스코드 운영진에게 직접 말하는 것도
    돼요). 키 자체는 비공개 채널로 전달돼요. 스코프는 없어요(키 하나 = 읽기
    전부).
@@ -73,7 +73,7 @@ const wal = await eco.getWalletByMc('SteveMan');   // 런처/클라이언트용 
 3. **숫자를 하드코딩하지 마세요.** 보여줄 배수·캡이 필요하면 `getConfigValue()`로
    `economy_config`에서 읽어요 (30초 캐시). 운영자가 값을 바꾸면 같이 움직여요.
 
-자세한 근거와 키 발급·보안 정책: [fullmoon-docs/docs/policies.md](https://github.com/Fullmoon-OSS/fullmoon-docs/blob/main/docs/policies.md)
+자세한 근거와 키 발급·보안 정책: [fullmoon-docs/docs/policies.md](https://github.com/fullmoon-network/fullmoon-docs/blob/main/docs/policies.md)
 
 ## API 요약 (자세한 스펙: fullmoon-economy-api README)
 

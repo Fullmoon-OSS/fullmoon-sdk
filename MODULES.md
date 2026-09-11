@@ -29,7 +29,7 @@ git이 편한 개발자는 PR로, 아니면 **이슈 한 장**으로도 등록�
 
 ### 방법 A — 이슈 한 장 (git 불필요)
 
-[모듈 등록 이슈](https://github.com/Fullmoon-OSS/fullmoon-sdk/issues/new?template=module-registration.yml)를
+[모듈 등록 이슈](https://github.com/fullmoon-network/fullmoon-sdk/issues/new?template=module-registration.yml)를
 열어 이름·유형·소개·링크를 적어 제출하면 끝이에요. 운영자가 확인해서
 `registry/modules.json`에 대신 넣어주고, 병합되면 모듈 사이트에 바로 반영돼요.
 

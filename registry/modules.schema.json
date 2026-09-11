@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/Fullmoon-OSS/fullmoon-sdk/blob/main/registry/modules.schema.json",
+  "$id": "https://github.com/fullmoon-network/fullmoon-sdk/blob/main/registry/modules.schema.json",
   "title": "Fullmoon module registry",
   "description": "Module catalog data rendered by modules.fullmoon.ink. Registration PRs must satisfy this schema; scripts/validate-registry.mjs (CI) enforces the same rules. verified must be false in registration PRs - only the operator flips it to true after review.",
   "type": "object",

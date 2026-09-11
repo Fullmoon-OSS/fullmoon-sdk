@@ -9,7 +9,7 @@
 - **예제 추가** — `examples/`에 실행 가능한 예제로 PR을 주세요. `node --check`를
   통과하고, 3가지 철칙(README 참고)을 어기면 안 돼요.
 - **모듈 등록** — git이 편하면 `registry/modules.json`에 PR, 아니면
-  [모듈 등록 이슈](https://github.com/Fullmoon-OSS/fullmoon-sdk/issues/new?template=module-registration.yml)
+  [모듈 등록 이슈](https://github.com/fullmoon-network/fullmoon-sdk/issues/new?template=module-registration.yml)
   한 장이면 돼요. 운영자가 대신 넣어줘요.
 - **문서 개선** — 틀리거나 빠진 부분은 언제나 환영이에요.
 

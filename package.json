@@ -29,6 +29,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Fullmoon-OSS/fullmoon-sdk.git"
+    "url": "git+https://github.com/fullmoon-network/fullmoon-sdk.git"
   }
 }

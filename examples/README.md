@@ -19,7 +19,7 @@
 ## 실행
 
 전부 `ECONOMY_API_KEY` 환경변수가 필요해요 (없으면
-[키 발급 이슈](https://github.com/Fullmoon-OSS/fullmoon-sdk/issues/new?template=key-request.yml)로
+[키 발급 이슈](https://github.com/fullmoon-network/fullmoon-sdk/issues/new?template=key-request.yml)로
 신청하세요).
 
 ```bash
